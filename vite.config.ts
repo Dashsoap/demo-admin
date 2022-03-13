@@ -20,5 +20,16 @@ export default defineConfig({
         additionalData: '@inport "@/styles/variables.scss";'
       }
     }
+  },
+  server: {
+    proxy: {
+      // 使用 proxy 实例
+      '/api': {
+        target: 'https://shop.fed.lagounews.com/api/admin/',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+
+    }
   }
 })
